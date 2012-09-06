@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:component-scan base-package="com.vmware.poc.cucumber.jvm" />
+	
+	<bean class="com.vmware.poc.cucumber.jvm.TestConfig" name="host-config">
+		<property name="host" value="172.16.6.144" />
+		<property name="tomcatHome" value="/home/einternicola/Applications/apache-tomcat-7.0.29" />
+		
+		<!-- Specify this if you're connecting as a different user -->
+		<!-- <property name="user" /> -->
+	</bean>
+
+</beans>
