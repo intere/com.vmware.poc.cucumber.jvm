@@ -1,13 +1,16 @@
 package com.vmware.poc.cucumber.jvm;
 
-import com.vmware.poc.cucumber.jvm.TestConfig;
+import static org.junit.Assert.assertTrue;
+
+import org.apache.log4j.Logger;
+
+import com.vmware.poc.cucumber.jvm.RemoteTomcatController.RunMethod;
 import com.vmware.poc.cucumber.jvm.spring.SpringLoader;
 
 import cucumber.annotation.en.And;
 import cucumber.annotation.en.Given;
 import cucumber.annotation.en.Then;
 import cucumber.annotation.en.When;
-
 
 /**
  * 
@@ -16,26 +19,33 @@ import cucumber.annotation.en.When;
  */
 public class TomcatStartupStepDefs {
 	
+	private static final Logger LOG = Logger.getLogger(TomcatStartupStepDefs.class);
+
+	
 	private TestConfig config;
+	private RemoteProcessListing listing;
+	private RemoteTomcatController tomcatController;
 
 	@Given("^Tomcat is not running on \"([^\"]*)\"$")
-	public void Tomcat_is_running(String host) {
+	public void Tomcat_is_not_running(String host) throws Throwable {
 		
 		// get the config
 		config = SpringLoader.loadTestConfigByName(host);
+		listing = new RemoteProcessListing(config);
+		tomcatController = new RemoteTomcatController(config);
 		
-		// TODO - check to see if tomcat is running
-		
-
-		// TODO - if it is, then kill it
+		// Check to see if tomcat is running.  If it is, then kill it
+		if(listing.hasProcessByRegex("tomcat")) {
+			LOG.info("Tomcat is running on host: " + config.getHost() + ", shutting down");
+			tomcatController.run(RunMethod.Stop);
+		}
 	}
 	
-//	@When("\"([^\"]*)\"$")
 	@When("^I tell Tomcat to startup$")
-	public void I_tell_Tomcat_to_startup() {
-		// TODO - startup tomcat on the host
+	public void I_tell_Tomcat_to_startup() throws Throwable {
 		
-		throw new IllegalStateException("Not yet implmented");
+		LOG.info("Starting up tomcat on host: " + config.getHost());
+		tomcatController.run(RunMethod.Start);
 	}
 	
 	@And("^wait for 10 seconds$")
@@ -44,7 +54,10 @@ public class TomcatStartupStepDefs {
 	}
 	
 	@Then("^Tomcat should be running$")
-	public void Tomcat_should_be_running() {
-		throw new IllegalStateException("Not yet implmented");		
+	public void Tomcat_should_be_running() throws Throwable {
+		
+		listing = new RemoteProcessListing(config);
+		
+		assertTrue("Tomcat is not running on host: " + config.getHost(), listing.hasProcessByRegex("tomcat"));
 	}
 }
