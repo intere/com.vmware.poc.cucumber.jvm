@@ -10,10 +10,9 @@
 
 	<context:component-scan base-package="com.vmware.poc.cucumber.jvm" />
 	
-	<bean class="com.vmware.poc.cucumber.jvm.TestConfig" name="host-config">
-		<property name="host" value="172.16.6.144" />
+	<bean class="com.vmware.poc.cucumber.jvm.TestConfig" name="gemfire-1">
+		<property name="host" value="gemfire-1" />
 		<property name="tomcatHome" value="/home/einternicola/Applications/apache-tomcat-7.0.29" />
-		
 		<!-- Specify this if you're connecting as a different user -->
 		<!-- <property name="user" /> -->
 	</bean>
