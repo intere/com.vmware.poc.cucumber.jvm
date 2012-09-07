@@ -1,9 +1,12 @@
-package com.vmware.poc.cucumber.jvm;
+package com.vmware.poc.cucumber.jvm.steps;
 
 import static org.junit.Assert.assertTrue;
 
 import org.apache.log4j.Logger;
 
+import com.vmware.poc.cucumber.jvm.RemoteProcessListing;
+import com.vmware.poc.cucumber.jvm.RemoteTomcatController;
+import com.vmware.poc.cucumber.jvm.TestConfig;
 import com.vmware.poc.cucumber.jvm.RemoteTomcatController.RunMethod;
 import com.vmware.poc.cucumber.jvm.spring.SpringLoader;
 
@@ -50,10 +53,11 @@ public class TomcatStartupStepDefs {
 		tomcatController.run(RunMethod.Start);
 	}
 	
-	@And("^wait for 10 seconds$")
-	public void wait_for_10_seconds() throws Throwable 
+	@And("^wait for ([\\d]+) seconds$")
+	public void wait_for_N_seconds(int seconds) throws Throwable 
 	{
-		Thread.sleep(10000L);
+		LOG.info("Waiting for " + seconds + " seconds");
+		Thread.sleep((long)seconds*1000L);
 	}
 	
 	@Then("^Tomcat should be running$")
