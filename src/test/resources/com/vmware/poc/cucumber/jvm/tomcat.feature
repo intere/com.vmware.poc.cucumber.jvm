@@ -6,12 +6,12 @@ Feature: Tomcat
 	Scenario:	Shutdown Tomcat
 		Given Tomcat is running on "gemfire-1"
 		When I tell Tomcat to shutdown
-		And wait for 10 seconds
+		And wait for 3 seconds
 		Then Tomcat should not be running
 		
 	Scenario:	Startup Tomcat
 		Given Tomcat is not running on "gemfire-1"
 		When I tell Tomcat to startup
-		And wait for 10 seconds
+		And wait for 3 seconds
 		Then Tomcat should be running
 		

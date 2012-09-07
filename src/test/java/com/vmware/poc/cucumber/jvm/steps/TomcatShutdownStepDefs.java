@@ -11,7 +11,9 @@ import com.vmware.poc.cucumber.jvm.spring.SpringLoader;
 import cucumber.annotation.en.Given;
 import cucumber.annotation.en.Then;
 import cucumber.annotation.en.When;
-import cucumber.runtime.PendingException;
+
+import static org.junit.Assert.*;
+
 
 
 /**
@@ -21,6 +23,7 @@ import cucumber.runtime.PendingException;
  *
  */
 public class TomcatShutdownStepDefs {
+	
 	private static final String TOMCAT_PROCESS = ".*tomcat.*";
 	private static final Logger LOG = Logger.getLogger(TomcatShutdownStepDefs.class);
 
@@ -30,6 +33,7 @@ public class TomcatShutdownStepDefs {
 	
 	@Given("^Tomcat is running on \"([^\"]*)\"$")
 	public void Tomcat_is_running_on(String host) throws Throwable {
+		
 		// get the config
 		config = SpringLoader.loadTestConfigByName(host);
 		listing = new RemoteProcessListing(config);
@@ -39,7 +43,6 @@ public class TomcatShutdownStepDefs {
 			LOG.info("Tomcat is not running on host: " + config.getHost() + ", I'll start it up");
 			tomcatController.run(RunMethod.Start);
 		}
-		
 	}
 	
 	@When("^I tell Tomcat to shutdown$")
@@ -52,8 +55,10 @@ public class TomcatShutdownStepDefs {
 	
 	@Then("^Tomcat should not be running$")
 	public void Tomcat_should_not_be_running() throws Throwable {
-	    // Express the Regexp above with the code you wish you had
-	    throw new PendingException();
+		listing = new RemoteProcessListing(config);
+		
+		assertFalse("Tomcat should not be running on host: " + config.getHost(),
+				listing.hasProcessByRegex(TOMCAT_PROCESS));
 	}
 
 
