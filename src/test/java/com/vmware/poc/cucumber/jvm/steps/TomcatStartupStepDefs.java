@@ -2,12 +2,15 @@ package com.vmware.poc.cucumber.jvm.steps;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 
 import com.vmware.poc.cucumber.jvm.RemoteProcessListing;
 import com.vmware.poc.cucumber.jvm.RemoteTomcatController;
-import com.vmware.poc.cucumber.jvm.TestConfig;
 import com.vmware.poc.cucumber.jvm.RemoteTomcatController.RunMethod;
+import com.vmware.poc.cucumber.jvm.TestConfig;
+import com.vmware.poc.cucumber.jvm.models.ProcessInfo;
 import com.vmware.poc.cucumber.jvm.spring.SpringLoader;
 
 import cucumber.annotation.en.And;
@@ -42,6 +45,10 @@ public class TomcatStartupStepDefs {
 		// Check to see if tomcat is running.  If it is, then kill it
 		if(listing.hasProcessByRegex(TOMCAT_PROCESS)) {
 			LOG.info("Tomcat is running on host: " + config.getHost() + ", shutting down");
+			
+			List<ProcessInfo> procs = listing.getProcessDetails(TOMCAT_PROCESS);
+			
+			
 			tomcatController.run(RunMethod.Stop);
 		}
 	}

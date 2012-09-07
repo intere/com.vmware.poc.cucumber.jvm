@@ -131,4 +131,9 @@ public class ProcessInfo {
 	}
 	
 	
+	@Override
+	public String toString() {
+		return "PID=" + getProcessId() + ", " + getCmd(); 
+	}
+	
 }

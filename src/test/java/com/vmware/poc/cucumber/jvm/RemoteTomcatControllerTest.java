@@ -1,6 +1,7 @@
 package com.vmware.poc.cucumber.jvm;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.vmware.poc.cucumber.jvm.RemoteTomcatController.RunMethod;
 
+@Ignore("We really only care about the Cucumber Tests")
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath:/com/vmware/poc/cucumber/jvm/poc-config.xml"})
 public class RemoteTomcatControllerTest {
