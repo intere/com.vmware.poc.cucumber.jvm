@@ -5,7 +5,7 @@
 mvn install:install-file -Dfile=master/pom.xml \
                          -DpomFile=master/pom.xml \
                          -DgroupId=com.intere.pom.master \
-                         -DartifactId=ter-pom\
+                         -DartifactId=master-pom \
                          -Dversion=0.0.1-SNAPSHOT \
                          -Dpackaging=pom \
                          -DcreateChecksum=true
