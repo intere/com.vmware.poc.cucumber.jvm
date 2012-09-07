@@ -12,7 +12,7 @@
 	
 	<bean class="com.vmware.poc.cucumber.jvm.TestConfig" name="gemfire-1">
 		<property name="host" value="gemfire-1" />
-		<property name="tomcatHome" value="/home/einternicola/Applications/apache-tomcat-7.0.29" />
+		<property name="tomcatHome" value="/opt/apache-tomcat-7.0.29" />
 		<!-- Specify this if you're connecting as a different user -->
 		<!-- <property name="user" /> -->
 	</bean>
