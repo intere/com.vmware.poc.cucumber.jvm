@@ -15,6 +15,8 @@ public class RemoteTomcatController extends AbstractRemoteProcessRunner {
 	/** What method are we going to run?. See the enum at the bottom. */
 	private RunMethod method;
 
+	private static final String TOMCAT_PROCESS = ".*tomcat.*";
+
 	/**
 	 * Constructor.
 	 * 
@@ -24,6 +26,10 @@ public class RemoteTomcatController extends AbstractRemoteProcessRunner {
 	 */
 	public RemoteTomcatController(TestConfig testConfig) throws IOException, InterruptedException {
 		super(testConfig);
+	}
+
+	public String getProcessName() {
+		return TOMCAT_PROCESS;
 	}
 
 	public void run(RunMethod method) throws IOException, InterruptedException {
