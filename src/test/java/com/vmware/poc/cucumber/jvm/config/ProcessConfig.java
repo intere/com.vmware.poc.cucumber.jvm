@@ -13,8 +13,8 @@ public class ProcessConfig {
 	@Autowired
 	private TestConfig config;
 
-	@Bean
-	public AbstractRemoteController tomcat() {
+	@Bean(name = "Tomcat")
+	public AbstractRemoteController tomcatRemoteController() {
 		return new TomcatRemoteController(config);
 	}
 }
