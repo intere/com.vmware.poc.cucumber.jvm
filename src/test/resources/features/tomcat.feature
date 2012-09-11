@@ -1,16 +1,16 @@
-Feature: Tomcat
-	The purpose of this feature is to demonstrate the ability to startup/shutdown tomcat
+Feature: tc Server
+	The purpose of this feature is to demonstrate the ability to startup/shutdown tc Server
 	and verify that it is up and/or down when expected, along with running some other
 	tools in the process.
 
-	Scenario: Shutdown Tomcat
-		Given "Tomcat" is running
-		When "Tomcat" is stopped
+	Scenario: Shutdown tc Server
+		Given "tc Server" is running
+		When "tc Server" is stopped
 		And wait for 10 seconds
-		Then "Tomcat" should not be running
+		Then "tc Server" should not be running
 
-	Scenario: Startup Tomcat
-		Given "Tomcat" is not running
-		When "Tomcat" is started
+	Scenario: Startup tc Server
+		Given "tc Server" is not running
+		When "tc Server" is started
 		And wait for 10 seconds
-		Then "Tomcat" should be running
+		Then "tc Server" should be running

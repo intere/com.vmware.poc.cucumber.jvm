@@ -12,7 +12,7 @@
 
 	<context:component-scan base-package="com.vmware.poc.cucumber.jvm" />
 
-	<bean class="com.vmware.poc.cucumber.jvm.ServerConfig" name="gemfire-1">
+	<bean name="tcServer" class="com.vmware.poc.cucumber.jvm.ServerConfig">
 		<property name="host" value="gemfire-1" />
 		<property name="homeDirectory" value="/opt/apache-tomcat-7.0.29" />
 		<!-- Specify this if you're connecting as a different user -->
