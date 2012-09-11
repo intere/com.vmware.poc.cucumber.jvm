@@ -1,4 +1,4 @@
-package com.vmware.poc.cucumber.jvm.steps;
+package com.vmware.poc.cucumber.jvm.steps.process;
 
 import com.vmware.poc.cucumber.jvm.RemoteController;
 import com.vmware.poc.cucumber.jvm.RemoteProcessListing;
@@ -25,7 +25,7 @@ public class ServerStartupStepDefs {
 	private ServerConfig config;
 
 	@Given("^\"([^\"]*)\" is not running$")
-	public void Server_is_not_running(String server) throws Throwable {
+	public void server_is_not_running(String server) throws Throwable {
 		RemoteController remoteController = remoteControllers.get(server);
 
 		RemoteProcessListing listing = new RemoteProcessListing(config);
@@ -38,7 +38,7 @@ public class ServerStartupStepDefs {
 	}
 
 	@When("^\"([^\"]*)\" is started$")
-	public void I_tell_Server_to_startup(String server) throws Throwable {
+	public void server_is_started(String server) throws Throwable {
 		LOG.info("Starting up " + server + " on host: " + config.getHost());
 
 		RemoteController remoteController = remoteControllers.get(server);
@@ -47,7 +47,7 @@ public class ServerStartupStepDefs {
 	}
 
 	@Then("^\"([^\"]*)\" should be running$")
-	public void Server_should_be_running(String server) throws Throwable {
+	public void server_should_be_running(String server) throws Throwable {
 		RemoteProcessListing listing = new RemoteProcessListing(config);
 
 		RemoteController remoteController = remoteControllers.get(server);

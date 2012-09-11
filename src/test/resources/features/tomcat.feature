@@ -14,3 +14,4 @@ Feature: tc Server
 		When "tc Server" is started
 		And wait for 10 seconds
 		Then "tc Server" should be running
+		And the URL "http://172.16.227.138:8080" should be available

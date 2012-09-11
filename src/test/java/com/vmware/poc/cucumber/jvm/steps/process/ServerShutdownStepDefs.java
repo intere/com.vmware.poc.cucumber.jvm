@@ -1,4 +1,4 @@
-package com.vmware.poc.cucumber.jvm.steps;
+package com.vmware.poc.cucumber.jvm.steps.process;
 
 import com.vmware.poc.cucumber.jvm.RemoteController;
 import com.vmware.poc.cucumber.jvm.RemoteProcessListing;
@@ -27,7 +27,7 @@ public class ServerShutdownStepDefs {
 	private ServerConfig config;
 
 	@Given("^\"([^\"]*)\" is running$")
-	public void Server_is_running_on(String server) throws Throwable {
+	public void server_is_running_on(String server) throws Throwable {
 		RemoteController remoteController = remoteControllers.get(server);
 
 		RemoteProcessListing listing = new RemoteProcessListing(config);
@@ -39,7 +39,7 @@ public class ServerShutdownStepDefs {
 	}
 
 	@When("^\"([^\"]*)\" is stopped$")
-	public void I_tell_Server_to_shutdown(String server) throws Throwable {
+	public void server_is_stopped(String server) throws Throwable {
 		LOG.info("Shutting down server " + server);
 
 		RemoteController remoteController = remoteControllers.get(server);
@@ -48,7 +48,7 @@ public class ServerShutdownStepDefs {
 	}
 
 	@Then("^\"([^\"]*)\" should not be running$")
-	public void Server_should_not_be_running(String server) throws Throwable {
+	public void server_should_not_be_running(String server) throws Throwable {
 		RemoteProcessListing listing = new RemoteProcessListing(config);
 
 		RemoteController remoteController = remoteControllers.get(server);
