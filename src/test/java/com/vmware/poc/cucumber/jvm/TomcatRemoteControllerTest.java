@@ -14,12 +14,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class TomcatRemoteControllerTest {
 
 	@Autowired
-	private TestConfig testConfig;
+	private ServerConfig serverConfig;
 	private TomcatRemoteController controller;
 	
 	@Before
 	public void setUp() throws Exception {
-		controller = new TomcatRemoteController(testConfig);
+		controller = new TomcatRemoteController(serverConfig);
 	}
 
 	@Test

@@ -17,8 +17,8 @@ public class RemoteProcessListing extends AbstractRemoteProcessRunner {
 	private static final String OPTIONS = "-aef";
 
 	/** Constructor that sets the test config and then executes.  */
-	public RemoteProcessListing(TestConfig testConfig) throws IOException, InterruptedException {
-		super(testConfig);
+	public RemoteProcessListing(ServerConfig serverConfig) throws IOException, InterruptedException {
+		super(serverConfig);
 		run();
 	}
 

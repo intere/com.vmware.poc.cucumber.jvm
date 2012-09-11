@@ -17,8 +17,8 @@ public class TomcatRemoteController extends AbstractRemoteController {
 
 	private static final String TOMCAT_PROCESS = ".*tomcat.*";
 
-	public TomcatRemoteController(TestConfig testConfig) {
-		super(testConfig);
+	public TomcatRemoteController(ServerConfig serverConfig) {
+		super(serverConfig);
 	}
 
 	@Override
@@ -53,13 +53,13 @@ public class TomcatRemoteController extends AbstractRemoteController {
 	@Override
 	public List<String> buildCommand() {
 
-		if (testConfig.getTomcatHome() == null) {
+		if (serverConfig.getHomeDirectory() == null) {
 			throw new IllegalStateException("Error: The Tomcat Home is not defined in the configuration");
 		}
 
 		ArrayList<String> commands = new ArrayList<String>();
 
-		commands.add(testConfig.getTomcatHome() + File.separator + "bin" + File.separator + this.method.getScript());
+		commands.add(serverConfig.getHomeDirectory() + File.separator + "bin" + File.separator + this.method.getScript());
 
 		return commands;
 	}

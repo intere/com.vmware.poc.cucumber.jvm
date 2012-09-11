@@ -2,7 +2,7 @@ package com.vmware.poc.cucumber.jvm.steps;
 
 import com.vmware.poc.cucumber.jvm.AbstractRemoteController;
 import com.vmware.poc.cucumber.jvm.RemoteProcessListing;
-import com.vmware.poc.cucumber.jvm.TestConfig;
+import com.vmware.poc.cucumber.jvm.ServerConfig;
 import cucumber.annotation.en.Given;
 import cucumber.annotation.en.Then;
 import cucumber.annotation.en.When;
@@ -27,10 +27,10 @@ public class ServerShutdownStepDefs {
 	private Map<String, AbstractRemoteController> remoteControllersByServerType;
 
 	@Autowired
-	private TestConfig config;
+	private ServerConfig config;
 
-	@Given("^\"([^\"]*)\" is running on \"([^\"]*)\"$")
-	public void Server_is_running_on(String server, String host) throws Throwable {
+	@Given("^\"([^\"]*)\" is running$")
+	public void Server_is_running_on(String server) throws Throwable {
 		AbstractRemoteController remoteController = remoteControllersByServerType.get(server);
 		assertNotNull(remoteController);
 
@@ -42,7 +42,7 @@ public class ServerShutdownStepDefs {
 		}
 	}
 
-	@When("^I tell \"([^\"]*)\" to shutdown$")
+	@When("^\"([^\"]*)\" is stopped$")
 	public void I_tell_Server_to_shutdown(String server) throws Throwable {
 		LOG.info("Shutting down server " + server);
 

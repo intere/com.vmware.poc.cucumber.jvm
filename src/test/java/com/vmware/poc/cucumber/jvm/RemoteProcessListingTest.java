@@ -21,12 +21,13 @@ import com.vmware.poc.cucumber.jvm.models.ProcessInfo;
 public class RemoteProcessListingTest {
 	
 	@Autowired
-	private TestConfig testConfig;
+	private ServerConfig serverConfig;
+
 	private RemoteProcessListing listing;
 
 	@Before
 	public void setUp() throws Exception {
-		listing = new RemoteProcessListing(testConfig);
+		listing = new RemoteProcessListing(serverConfig);
 	}
 
 	@Test

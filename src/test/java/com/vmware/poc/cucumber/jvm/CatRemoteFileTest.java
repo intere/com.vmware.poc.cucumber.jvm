@@ -20,7 +20,7 @@ public class CatRemoteFileTest {
 	
 	public static final String TEST_FILE = "/etc/hosts";
 	@Autowired
-	private TestConfig testConfig;
+	private ServerConfig serverConfig;
 
 	
 	@Before
@@ -29,7 +29,7 @@ public class CatRemoteFileTest {
 
 	@Test
 	public void testCatFile() throws Exception {
-		CatRemoteFile cat = new CatRemoteFile(testConfig, TEST_FILE);
+		CatRemoteFile cat = new CatRemoteFile(serverConfig, TEST_FILE);
 		cat.run();
 		
 		assertNotNull("The command failed to give us any output", cat.getProcessOutput());

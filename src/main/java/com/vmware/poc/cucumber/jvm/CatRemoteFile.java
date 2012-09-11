@@ -14,12 +14,12 @@ public class CatRemoteFile extends AbstractRemoteProcessRunner {
 	
 	private File remoteFile;
 	
-	public CatRemoteFile(TestConfig testConfig, String remoteFile) throws IOException, InterruptedException {
-		this(testConfig, new File(remoteFile));
+	public CatRemoteFile(ServerConfig serverConfig, String remoteFile) throws IOException, InterruptedException {
+		this(serverConfig, new File(remoteFile));
 	}
 
-	public CatRemoteFile(TestConfig testConfig, File remoteFile) throws IOException, InterruptedException {
-		super(testConfig);
+	public CatRemoteFile(ServerConfig serverConfig, File remoteFile) throws IOException, InterruptedException {
+		super(serverConfig);
 		this.remoteFile = remoteFile;
 	}
 	

@@ -2,7 +2,7 @@ package com.vmware.poc.cucumber.jvm.steps;
 
 import com.vmware.poc.cucumber.jvm.AbstractRemoteController;
 import com.vmware.poc.cucumber.jvm.RemoteProcessListing;
-import com.vmware.poc.cucumber.jvm.TestConfig;
+import com.vmware.poc.cucumber.jvm.ServerConfig;
 import com.vmware.poc.cucumber.jvm.models.ProcessInfo;
 import cucumber.annotation.en.Given;
 import cucumber.annotation.en.Then;
@@ -27,10 +27,10 @@ public class ServerStartupStepDefs {
 	private Map<String, AbstractRemoteController> remoteControllersByServerType;
 
 	@Autowired
-	private TestConfig config;
+	private ServerConfig config;
 
-	@Given("^\"([^\"]*)\" is not running on \"([^\"]*)\"$")
-	public void Server_is_not_running(String server, String host) throws Throwable {
+	@Given("^\"([^\"]*)\" is not running$")
+	public void Server_is_not_running(String server) throws Throwable {
 		AbstractRemoteController remoteController = remoteControllersByServerType.get(server);
 		assertNotNull(remoteController);
 
@@ -45,7 +45,7 @@ public class ServerStartupStepDefs {
 		}
 	}
 
-	@When("^I tell \"([^\"]*)\" to startup$")
+	@When("^\"([^\"]*)\" is started$")
 	public void I_tell_Server_to_startup(String server) throws Throwable {
 		LOG.info("Starting up " + server + " on host: " + config.getHost());
 

@@ -20,12 +20,12 @@ public abstract class AbstractRemoteProcessRunner {
 
 	private static final String SSH = "ssh";
 
-	protected TestConfig testConfig;
+	protected ServerConfig serverConfig;
 	protected ProcessModel model;
 	protected BlockUntilProcessModelEvent listener;
 
-	public AbstractRemoteProcessRunner(TestConfig testConfig) {
-		this.testConfig = testConfig;
+	public AbstractRemoteProcessRunner(ServerConfig serverConfig) {
+		this.serverConfig = serverConfig;
 	}
 
 	public void run() throws IOException, InterruptedException {
@@ -40,10 +40,10 @@ public abstract class AbstractRemoteProcessRunner {
 		ArrayList<String> sshCommand = new ArrayList<String>();
 		sshCommand.add(SSH);
 
-		if (testConfig.getUser() != null) {
-			sshCommand.add(testConfig.getUser() + "@" + testConfig.getHost());
+		if (serverConfig.getUser() != null) {
+			sshCommand.add(serverConfig.getUser() + "@" + serverConfig.getHost());
 		} else {
-			sshCommand.add(testConfig.getHost());
+			sshCommand.add(serverConfig.getHost());
 		}
 		
 		sshCommand.addAll(buildCommand());
