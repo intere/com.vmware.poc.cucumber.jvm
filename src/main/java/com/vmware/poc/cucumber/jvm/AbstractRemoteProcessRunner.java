@@ -24,7 +24,7 @@ public abstract class AbstractRemoteProcessRunner {
 	protected ProcessModel model;
 	protected BlockUntilProcessModelEvent listener;
 
-	public AbstractRemoteProcessRunner(TestConfig testConfig) throws IOException, InterruptedException {
+	public AbstractRemoteProcessRunner(TestConfig testConfig) {
 		this.testConfig = testConfig;
 	}
 

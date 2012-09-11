@@ -10,29 +10,33 @@ import java.util.List;
  * @author einternicola
  * 
  */
-public class RemoteTomcatController extends AbstractRemoteProcessRunner {
+public class TomcatRemoteController extends AbstractRemoteController {
 
 	/** What method are we going to run?. See the enum at the bottom. */
 	private RunMethod method;
 
 	private static final String TOMCAT_PROCESS = ".*tomcat.*";
 
-	/**
-	 * Constructor.
-	 * 
-	 * @param testConfig
-	 * @throws IOException
-	 * @throws InterruptedException
-	 */
-	public RemoteTomcatController(TestConfig testConfig) throws IOException, InterruptedException {
+	public TomcatRemoteController(TestConfig testConfig) {
 		super(testConfig);
 	}
 
+	@Override
 	public String getProcessName() {
 		return TOMCAT_PROCESS;
 	}
 
-	public void run(RunMethod method) throws IOException, InterruptedException {
+	@Override
+	public void start() throws IOException, InterruptedException {
+		run(RunMethod.Start);
+	}
+
+	@Override
+	public void stop() throws IOException, InterruptedException {
+		run(RunMethod.Stop);
+	}
+
+	private void run(RunMethod method) throws IOException, InterruptedException {
 		this.method = method;
 		run();
 		this.method = null;
@@ -60,7 +64,7 @@ public class RemoteTomcatController extends AbstractRemoteProcessRunner {
 		return commands;
 	}
 
-	public enum RunMethod {
+	private enum RunMethod {
 		Start("startup.sh"), Stop("shutdown.sh"), Version("version.sh");
 
 		private String script;

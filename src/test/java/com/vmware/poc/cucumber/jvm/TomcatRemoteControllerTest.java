@@ -8,20 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.vmware.poc.cucumber.jvm.RemoteTomcatController.RunMethod;
-
 @Ignore("We really only care about the Cucumber Tests")
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath:/cucumber.xml"})
-public class RemoteTomcatControllerTest {
+public class TomcatRemoteControllerTest {
 
 	@Autowired
 	private TestConfig testConfig;
-	private RemoteTomcatController controller;
+	private TomcatRemoteController controller;
 	
 	@Before
 	public void setUp() throws Exception {
-		controller = new RemoteTomcatController(testConfig);
+		controller = new TomcatRemoteController(testConfig);
 	}
 
 	@Test
@@ -30,7 +28,7 @@ public class RemoteTomcatControllerTest {
 		System.out.println("------------------------------------------------");
 		System.out.println("Stopping...");
 		System.out.println("------------------------------------------------");
-		controller.run(RunMethod.Stop);
+		controller.stop();
 		System.out.println(controller.getProcessOutput());		
 		
 		System.out.println("sleeping for 10 seconds");
@@ -42,7 +40,7 @@ public class RemoteTomcatControllerTest {
 		System.out.println("------------------------------------------------");
 		System.out.println("Starting...");
 		System.out.println("------------------------------------------------");
-		controller.run(RunMethod.Start);
+		controller.start();
 		System.out.println(controller.getProcessOutput());
 	}
 
