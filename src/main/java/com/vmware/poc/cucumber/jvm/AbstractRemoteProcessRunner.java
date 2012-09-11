@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.intere.spring.process.ProcessModel;
 import com.intere.spring.process.tools.BlockUntilProcessModelEvent;
 
@@ -13,6 +15,9 @@ import com.intere.spring.process.tools.BlockUntilProcessModelEvent;
  * 
  */
 public abstract class AbstractRemoteProcessRunner {
+	
+	private static final Logger LOG = Logger.getLogger(AbstractRemoteProcessRunner.class);
+
 	private static final String SSH = "ssh";
 
 	protected TestConfig testConfig;
@@ -25,7 +30,7 @@ public abstract class AbstractRemoteProcessRunner {
 
 	public void run() throws IOException, InterruptedException {
 		model = new ProcessModel(buildSshCommand());
-		System.out.println("About to execute command: " + model.getExecutionString());
+		LOG.info("About to execute command: " + model.getExecutionString());
 		listener = new BlockUntilProcessModelEvent(model, true, true);
 		model.runProcess(true);
 	}
