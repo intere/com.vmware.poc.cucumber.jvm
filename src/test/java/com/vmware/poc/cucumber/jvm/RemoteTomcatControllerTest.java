@@ -12,7 +12,7 @@ import com.vmware.poc.cucumber.jvm.RemoteTomcatController.RunMethod;
 
 @Ignore("We really only care about the Cucumber Tests")
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"classpath:/com/vmware/poc/cucumber/jvm/poc-config.xml"})
+@ContextConfiguration(locations={"classpath:/cucumber.xml"})
 public class RemoteTomcatControllerTest {
 
 	@Autowired

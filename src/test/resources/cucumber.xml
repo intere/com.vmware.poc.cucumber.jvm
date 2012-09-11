@@ -8,13 +8,14 @@
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context.xsd">
 
+	<context:annotation-config/>
+
 	<context:component-scan base-package="com.vmware.poc.cucumber.jvm" />
-	
+
 	<bean class="com.vmware.poc.cucumber.jvm.TestConfig" name="gemfire-1">
 		<property name="host" value="gemfire-1" />
 		<property name="tomcatHome" value="/opt/apache-tomcat-7.0.29" />
 		<!-- Specify this if you're connecting as a different user -->
 		<!-- <property name="user" /> -->
 	</bean>
-
 </beans>
