@@ -53,7 +53,7 @@ public class ServerShutdownStepDefs {
 
 		RemoteController remoteController = remoteControllers.get(server);
 
-		assertFalse("\"Server \" + server + \" should not be running on host: " + config.getHost(),
+		assertFalse("Server " + server + " should not be running on host: " + config.getHost(),
 				listing.hasProcessByRegex(remoteController.getProcessName()));
 	}
 }
