@@ -30,7 +30,7 @@ public class ServerStartupStepDefs {
 
 		RemoteProcessListing listing = new RemoteProcessListing(config);
 
-		if (listing.hasProcessByRegex(remoteController.getProcessName())) {
+		if (listing.hasProcessByName(remoteController.getProcessName())) {
 			LOG.info("Server is running on host: " + config.getHost() + ", shutting down");
 
 			remoteController.stop();
@@ -53,6 +53,6 @@ public class ServerStartupStepDefs {
 		RemoteController remoteController = remoteControllers.get(server);
 
 		assertTrue("Server " + server + " is not running on host: " + config.getHost(),
-				listing.hasProcessByRegex(remoteController.getProcessName()));
+				listing.hasProcessByName(remoteController.getProcessName()));
 	}
 }
