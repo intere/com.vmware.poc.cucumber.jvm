@@ -32,7 +32,7 @@ public class ServerShutdownStepDefs {
 
 		RemoteProcessListing listing = new RemoteProcessListing(config);
 
-		if(!listing.hasProcessByRegex(remoteController.getProcessName())) {
+		if(!listing.hasProcessByName(remoteController.getProcessName())) {
 			LOG.info("Server " + server + " is not running on host: " + config.getHost() + ", I'll start it up");
 			remoteController.start();
 		}
@@ -54,6 +54,6 @@ public class ServerShutdownStepDefs {
 		RemoteController remoteController = remoteControllers.get(server);
 
 		assertFalse("\"Server \" + server + \" should not be running on host: " + config.getHost(),
-				listing.hasProcessByRegex(remoteController.getProcessName()));
+				listing.hasProcessByName(remoteController.getProcessName()));
 	}
 }

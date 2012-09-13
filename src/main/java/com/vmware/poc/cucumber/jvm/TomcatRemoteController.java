@@ -5,17 +5,23 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
+import com.vmware.poc.cucumber.jvm.util.ProcessInfoUtils;
+
 /**
  * 
  * @author einternicola
  * 
  */
 public class TomcatRemoteController extends AbstractRemoteController {
+	
+	private static final Logger LOG = Logger.getLogger(TomcatRemoteController.class);
 
 	/** What method are we going to run?. See the enum at the bottom. */
 	private RunMethod method;
 
-	private static final String TOMCAT_PROCESS = ".*tomcat.*";
+	private static final String TOMCAT_PROCESS = "tomcat";
 
 	public TomcatRemoteController(ServerConfig serverConfig) {
 		super(serverConfig);
@@ -29,11 +35,21 @@ public class TomcatRemoteController extends AbstractRemoteController {
 	@Override
 	public void start() throws IOException, InterruptedException {
 		run(RunMethod.Start);
+		if(!ProcessInfoUtils.waitForProcessToStart(serverConfig, TOMCAT_PROCESS, 5, 30, 10)) {
+			throw new IllegalStateException(TOMCAT_PROCESS + " failed to start");
+		} else {
+			LOG.info(TOMCAT_PROCESS + " has been started");
+		}
 	}
 
 	@Override
 	public void stop() throws IOException, InterruptedException {
 		run(RunMethod.Stop);
+		if(!ProcessInfoUtils.waitForProcessToStop(serverConfig, TOMCAT_PROCESS, 5,30, 10)) {
+			throw new IllegalStateException(TOMCAT_PROCESS + " failed to shutdown");
+		} else {
+			LOG.info(TOMCAT_PROCESS + " has been shutdown");
+		}
 	}
 
 	private void run(RunMethod method) throws IOException, InterruptedException {

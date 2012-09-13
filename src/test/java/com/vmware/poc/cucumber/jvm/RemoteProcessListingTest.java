@@ -36,7 +36,7 @@ public class RemoteProcessListingTest {
 		assertNotNull(listing.getProcessOutput(), "The Process Output was null");
 		System.out.println(listing.getProcessOutput());
 		
-		List<ProcessInfo> sshProcesses = listing.getProcessDetails(".*ssh.*");
+		List<ProcessInfo> sshProcesses = listing.getProcessDetailsByName(".*ssh.*");
 		
 		assertTrue("There were no ssh processes...", sshProcesses.size()>0);
 		

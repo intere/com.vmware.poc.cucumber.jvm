@@ -1,5 +1,6 @@
 package com.vmware.poc.cucumber.jvm;
 
+import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -8,10 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-@Ignore("We really only care about the Cucumber Tests")
+//@Ignore("We really only care about the Cucumber Tests")
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath:/cucumber.xml"})
 public class TomcatRemoteControllerTest {
+	
+	private static final Logger LOG = Logger.getLogger(TomcatRemoteControllerTest.class);
+
 
 	@Autowired
 	private ServerConfig serverConfig;
@@ -25,23 +29,20 @@ public class TomcatRemoteControllerTest {
 	@Test
 	public void testStop() throws Exception {
 		
-		System.out.println("------------------------------------------------");
-		System.out.println("Stopping...");
-		System.out.println("------------------------------------------------");
+		LOG.info("------------------------------------------------");
+		LOG.info("Stopping...");
+		LOG.info("------------------------------------------------");
 		controller.stop();
-		System.out.println(controller.getProcessOutput());		
-		
-		System.out.println("sleeping for 10 seconds");
-		Thread.sleep(10000L);
+		LOG.info(controller.getProcessOutput());		
 	}
 	
 	@Test
 	public void testStart() throws Exception {
-		System.out.println("------------------------------------------------");
-		System.out.println("Starting...");
-		System.out.println("------------------------------------------------");
+		LOG.info("------------------------------------------------");
+		LOG.info("Starting...");
+		LOG.info("------------------------------------------------");
 		controller.start();
-		System.out.println(controller.getProcessOutput());
+		LOG.info(controller.getProcessOutput());
 	}
 
 }

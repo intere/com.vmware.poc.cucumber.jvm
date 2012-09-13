@@ -6,12 +6,10 @@ Feature: tc Server
 	Scenario: Shutdown tc Server
 		Given "tc Server" is running
 		When "tc Server" is stopped
-		And wait for 10 seconds
 		Then "tc Server" should not be running
 
 	Scenario: Startup tc Server
 		Given "tc Server" is not running
 		When "tc Server" is started
-		And wait for 10 seconds
 		Then "tc Server" should be running
-		And the URL "http://172.16.227.138:8080" should be available
+		And the URL "http://gemfire-1:8080" should be available
