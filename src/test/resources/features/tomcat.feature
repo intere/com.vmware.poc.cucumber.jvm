@@ -7,6 +7,7 @@ Feature: tc Server
 		Given "tc Server" is running
 		When "tc Server" is stopped
 		Then "tc Server" should not be running
+		And the "home" page for "tc Server" should be "unavailable"
 
 	Scenario: Startup tc Server
 		Given "tc Server" is not running

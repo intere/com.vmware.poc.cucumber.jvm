@@ -2,7 +2,7 @@ package com.vmware.poc.cucumber.jvm.config;
 
 import com.vmware.poc.cucumber.jvm.RemoteController;
 import com.vmware.poc.cucumber.jvm.ServerConfig;
-import com.vmware.poc.cucumber.jvm.TomcatRemoteController;
+import com.vmware.poc.cucumber.jvm.TomcatSshRemoteController;
 import com.vmware.poc.cucumber.jvm.models.RemoteControllerMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -25,6 +25,6 @@ public class RemoteControllerConfig {
 
 	@Bean
 	public RemoteController tomcatRemoteController() {
-		return new TomcatRemoteController(config);
+		return new TomcatSshRemoteController(config);
 	}
 }

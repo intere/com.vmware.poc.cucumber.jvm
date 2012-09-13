@@ -14,16 +14,16 @@ import com.vmware.poc.cucumber.jvm.util.ProcessInfoUtils;
  * @author einternicola
  * 
  */
-public class TomcatRemoteController extends AbstractRemoteController {
+public class TomcatSshRemoteController extends AbstractSshRemoteController {
 	
-	private static final Logger LOG = Logger.getLogger(TomcatRemoteController.class);
+	private static final Logger LOG = Logger.getLogger(TomcatSshRemoteController.class);
 
 	/** What method are we going to run?. See the enum at the bottom. */
 	private RunMethod method;
 
 	private static final String TOMCAT_PROCESS = "tomcat";
 
-	public TomcatRemoteController(ServerConfig serverConfig) {
+	public TomcatSshRemoteController(ServerConfig serverConfig) {
 		super(serverConfig);
 	}
 

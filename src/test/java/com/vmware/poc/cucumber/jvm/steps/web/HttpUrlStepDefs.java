@@ -4,7 +4,6 @@ import com.vmware.poc.cucumber.jvm.ServerConfig;
 import com.vmware.poc.cucumber.jvm.models.HttpStatusCodes;
 import cucumber.annotation.en.Then;
 import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
