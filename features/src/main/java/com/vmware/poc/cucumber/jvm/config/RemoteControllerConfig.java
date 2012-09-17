@@ -1,9 +1,9 @@
 package com.vmware.poc.cucumber.jvm.config;
 
 import com.vmware.poc.cucumber.jvm.models.ServerConfig;
-import com.vmware.poc.cucumber.jvm.ssh.RemoteController;
-import com.vmware.poc.cucumber.jvm.ssh.RemoteControllerMap;
-import com.vmware.poc.cucumber.jvm.ssh.TomcatSshRemoteController;
+import com.vmware.poc.cucumber.jvm.remote.RemoteController;
+import com.vmware.poc.cucumber.jvm.remote.RemoteControllerMap;
+import com.vmware.poc.cucumber.jvm.remote.ssh.TomcatSshRemoteController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

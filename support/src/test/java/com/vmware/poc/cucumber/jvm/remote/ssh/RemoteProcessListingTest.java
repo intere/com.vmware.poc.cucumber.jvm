@@ -1,4 +1,4 @@
-package com.vmware.poc.cucumber.jvm.ssh;
+package com.vmware.poc.cucumber.jvm.remote.ssh;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;

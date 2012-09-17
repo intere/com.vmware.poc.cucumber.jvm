@@ -1,4 +1,4 @@
-package com.vmware.poc.cucumber.jvm.ssh;
+package com.vmware.poc.cucumber.jvm.remote.ssh;
 
 import java.io.File;
 import java.io.IOException;

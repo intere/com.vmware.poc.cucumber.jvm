@@ -1,4 +1,4 @@
-package com.vmware.poc.cucumber.jvm.ssh;
+package com.vmware.poc.cucumber.jvm.remote.ssh;
 
 import com.vmware.poc.cucumber.jvm.models.ServerConfig;
 import org.apache.log4j.Logger;

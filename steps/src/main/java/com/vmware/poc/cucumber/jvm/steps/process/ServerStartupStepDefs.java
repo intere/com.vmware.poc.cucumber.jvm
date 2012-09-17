@@ -1,9 +1,9 @@
 package com.vmware.poc.cucumber.jvm.steps.process;
 
 import com.vmware.poc.cucumber.jvm.models.ServerConfig;
-import com.vmware.poc.cucumber.jvm.ssh.RemoteController;
-import com.vmware.poc.cucumber.jvm.ssh.RemoteControllerMap;
-import com.vmware.poc.cucumber.jvm.ssh.RemoteProcessListing;
+import com.vmware.poc.cucumber.jvm.remote.RemoteController;
+import com.vmware.poc.cucumber.jvm.remote.RemoteControllerMap;
+import com.vmware.poc.cucumber.jvm.remote.ssh.RemoteProcessListing;
 import cucumber.annotation.en.Given;
 import cucumber.annotation.en.Then;
 import cucumber.annotation.en.When;
