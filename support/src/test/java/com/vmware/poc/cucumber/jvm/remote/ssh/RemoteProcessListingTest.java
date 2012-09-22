@@ -21,6 +21,7 @@ public class RemoteProcessListingTest {
 	public void setUp() throws Exception {
 		serverConfig = new ServerConfig();
 		serverConfig.setHost("localhost");
+		serverConfig.setPassword("vmware1");
 
 		listing = new RemoteProcessListing(serverConfig);
 	}

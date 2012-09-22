@@ -1,11 +1,10 @@
 package com.vmware.poc.cucumber.jvm.remote;
 
-import java.io.IOException;
 
 public interface RemoteController {
 	String getProcessName();
 
-	void start() throws IOException, InterruptedException;
+	void start() throws Exception;
 
-	void stop() throws IOException, InterruptedException;
+	void stop() throws Exception;
 }

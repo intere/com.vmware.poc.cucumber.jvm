@@ -17,6 +17,7 @@ public class TomcatSshRemoteControllerTest {
 	public void setUp() throws Exception {
 		serverConfig = new ServerConfig();
 		serverConfig.setHost("localhost");
+		serverConfig.setPassword("vmware1");
 
 		controllerSsh = new TomcatSshRemoteController(serverConfig);
 	}

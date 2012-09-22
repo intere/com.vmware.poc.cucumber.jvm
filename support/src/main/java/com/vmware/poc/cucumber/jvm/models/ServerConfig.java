@@ -8,7 +8,9 @@ import java.util.Map;
 public class ServerConfig {
 
 	private String host;
-	private String user;
+	private String username;
+	private String password;
+	private Integer port;
 	private String homeDirectory;
 	private Map<String, String> urls;
 
@@ -20,12 +22,20 @@ public class ServerConfig {
 		this.host = host;
 	}
 
-	public String getUser() {
-		return user;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUser(String user) {
-		this.user = user;
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getHomeDirectory() {
@@ -50,5 +60,25 @@ public class ServerConfig {
 		}
 
 		return urls.get(page);
+	}
+	
+	public Integer getPort() {
+		return port;
+	}
+	
+	public void setPort(Integer port) {
+		this.port = port;
+	}
+
+	public boolean hasPort() {
+		return getPort() != null;
+	}
+
+	public boolean hasUsername() {
+		return getUsername() != null;
+	}
+
+	public boolean hasPassword() {
+		return getPassword() != null;
 	}
 }

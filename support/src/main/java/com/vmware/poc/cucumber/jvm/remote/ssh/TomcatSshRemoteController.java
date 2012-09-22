@@ -32,7 +32,7 @@ public class TomcatSshRemoteController extends AbstractSshRemoteController {
 	}
 
 	@Override
-	public void start() throws IOException, InterruptedException {
+	public void start() throws Exception {
 		run(RunMethod.Start);
 		if(!ProcessInfoUtils.waitForProcessToStart(serverConfig, TOMCAT_PROCESS, 5, 30, 10)) {
 			throw new IllegalStateException(TOMCAT_PROCESS + " failed to start");
@@ -42,7 +42,7 @@ public class TomcatSshRemoteController extends AbstractSshRemoteController {
 	}
 
 	@Override
-	public void stop() throws IOException, InterruptedException {
+	public void stop() throws Exception {
 		run(RunMethod.Stop);
 		if(!ProcessInfoUtils.waitForProcessToStop(serverConfig, TOMCAT_PROCESS, 5,30, 10)) {
 			throw new IllegalStateException(TOMCAT_PROCESS + " failed to shutdown");
@@ -51,14 +51,14 @@ public class TomcatSshRemoteController extends AbstractSshRemoteController {
 		}
 	}
 
-	private void run(RunMethod method) throws IOException, InterruptedException {
+	private void run(RunMethod method) throws Exception {
 		this.method = method;
 		run();
 		this.method = null;
 	}
 
 	@Override
-	public void run() throws IOException, InterruptedException {
+	public void run() throws Exception {
 		if (this.method == null) {
 			throw new IllegalStateException("Error, you must use the alternate run(RunMethod) implementation");
 		}

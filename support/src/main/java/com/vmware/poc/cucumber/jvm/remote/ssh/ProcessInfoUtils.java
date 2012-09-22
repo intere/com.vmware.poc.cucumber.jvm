@@ -36,10 +36,9 @@ public class ProcessInfoUtils {
 	 * @param config
 	 * @param processString
 	 * @return
-	 * @throws IOException
-	 * @throws InterruptedException
+	 * @throws Exception 
 	 */
-	public static boolean processIsRunning(ServerConfig config, String processString) throws IOException, InterruptedException {
+	public static boolean processIsRunning(ServerConfig config, String processString) throws Exception {
 		RemoteProcessListing listing = new RemoteProcessListing(config);
 
 		return listing.hasProcessByName(".*" + processString + ".*");
@@ -63,11 +62,10 @@ public class ProcessInfoUtils {
 	 * @param minimumWaitInSeconds
 	 *            The minimum amount of time to wait (in seconds).
 	 * @return
-	 * @throws InterruptedException
-	 * @throws IOException
+	 * @throws Exception 
 	 */
 	public static boolean waitForProcessToStart(ServerConfig config, String processString, int intervalInSeconds, int timeoutInSeconds, int minimumWaitInSeconds)
-			throws IOException, InterruptedException {
+			throws Exception {
 
 		boolean running = processIsRunning(config, processString);
 
@@ -101,10 +99,9 @@ public class ProcessInfoUtils {
 	 * @param timeoutInSeconds
 	 * @param minimumWaitInSeconds
 	 * @return
-	 * @throws IOException
-	 * @throws InterruptedException
+	 * @throws Exception 
 	 */
-	public static boolean waitForProcessToStop(ServerConfig config, String processString, int intervalInSeconds, int timeoutInSeconds, int minimumWaitInSeconds) throws IOException, InterruptedException {
+	public static boolean waitForProcessToStop(ServerConfig config, String processString, int intervalInSeconds, int timeoutInSeconds, int minimumWaitInSeconds) throws Exception {
 
 		boolean running = processIsRunning(config, processString);
 

@@ -1,14 +1,21 @@
 package com.vmware.poc.cucumber.jvm.remote.ssh;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.Closeable;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.security.KeyPair;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.vmware.poc.cucumber.jvm.models.ServerConfig;
 import org.apache.log4j.Logger;
 
-import com.intere.spring.process.ProcessModel;
-import com.intere.spring.process.tools.BlockUntilProcessModelEvent;
+import com.vmware.poc.cucumber.jvm.models.ServerConfig;
 
 /**
  * 
@@ -16,47 +23,60 @@ import com.intere.spring.process.tools.BlockUntilProcessModelEvent;
  * 
  */
 public abstract class AbstractRemoteProcessRunner {
-	
+
 	private static final Logger LOG = Logger.getLogger(AbstractRemoteProcessRunner.class);
-
 	private static final String SSH = "ssh";
-
 	protected ServerConfig serverConfig;
-	protected ProcessModel model;
-	protected BlockUntilProcessModelEvent listener;
+	protected SshRunner runner;
+
 
 	public AbstractRemoteProcessRunner(ServerConfig serverConfig) {
 		this.serverConfig = serverConfig;
 	}
 
-	public void run() throws IOException, InterruptedException {
-		model = new ProcessModel(buildSshCommand());
-		LOG.info("About to execute command: " + model.getExecutionString());
-		listener = new BlockUntilProcessModelEvent(model, true, true);
-		model.runProcess(true);
+	public void run() throws Exception {
+
+		runner = new SshRunner(serverConfig, getCommand());
+		runner.run();
 	}
-	
-	public List<String> buildSshCommand()
-	{
+
+	public List<String> buildSshCommand() {
 		ArrayList<String> sshCommand = new ArrayList<String>();
 		sshCommand.add(SSH);
 
-		if (serverConfig.getUser() != null) {
-			sshCommand.add(serverConfig.getUser() + "@" + serverConfig.getHost());
+		if (serverConfig.getUsername() != null) {
+			sshCommand.add(serverConfig.getUsername() + "@" + serverConfig.getHost());
 		} else {
 			sshCommand.add(serverConfig.getHost());
 		}
-		
+
 		sshCommand.addAll(buildCommand());
-		
+
 		return sshCommand;
+	}
+
+	public String getCommand() {
+		StringBuilder builder = new StringBuilder();
+		List<String> params = buildCommand();
+
+		for (String param : params) {
+			if (builder.length() > 0) {
+				builder.append(" ");
+			}
+
+			builder.append(param);
+		}
+
+		return builder.toString();
 	}
 
 	public abstract List<String> buildCommand();
 
 	/** Helper method that gives you the process output. */
 	public String getProcessOutput() {
-		return listener.getStdOutBuffer().toString();
+		return runner.getStdOut().toString();
 	}
+
+	
 
 }

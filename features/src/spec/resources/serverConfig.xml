@@ -9,6 +9,7 @@
 	<bean name="tcServer" class="com.vmware.poc.cucumber.jvm.models.ServerConfig">
 		<property name="host" value="gemfire-1" />
 		<property name="homeDirectory" value="/opt/apache-tomcat-7.0.29" />
+		<property name="password" value="vmware1" />
 
 		<property name="urls">
 			<util:map>
