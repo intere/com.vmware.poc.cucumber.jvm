@@ -1,7 +1,6 @@
 package com.vmware.poc.cucumber.jvm.remote.ssh;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +31,7 @@ public class TomcatSshRemoteController extends AbstractSshRemoteController {
 	}
 
 	@Override
-	public void start() throws Exception {
+	public void start() {
 		run(RunMethod.Start);
 		if(!ProcessInfoUtils.waitForProcessToStart(serverConfig, TOMCAT_PROCESS, 5, 30, 10)) {
 			throw new IllegalStateException(TOMCAT_PROCESS + " failed to start");
@@ -42,7 +41,7 @@ public class TomcatSshRemoteController extends AbstractSshRemoteController {
 	}
 
 	@Override
-	public void stop() throws Exception {
+	public void stop() {
 		run(RunMethod.Stop);
 		if(!ProcessInfoUtils.waitForProcessToStop(serverConfig, TOMCAT_PROCESS, 5,30, 10)) {
 			throw new IllegalStateException(TOMCAT_PROCESS + " failed to shutdown");
@@ -51,14 +50,14 @@ public class TomcatSshRemoteController extends AbstractSshRemoteController {
 		}
 	}
 
-	private void run(RunMethod method) throws Exception {
+	private void run(RunMethod method) {
 		this.method = method;
 		run();
 		this.method = null;
 	}
 
 	@Override
-	public void run() throws Exception {
+	public void run() {
 		if (this.method == null) {
 			throw new IllegalStateException("Error, you must use the alternate run(RunMethod) implementation");
 		}

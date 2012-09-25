@@ -1,6 +1,5 @@
 package com.vmware.poc.cucumber.jvm.remote.ssh;
 
-import java.io.IOException;
 import java.util.List;
 
 import com.vmware.poc.cucumber.jvm.models.ServerConfig;
@@ -36,9 +35,8 @@ public class ProcessInfoUtils {
 	 * @param config
 	 * @param processString
 	 * @return
-	 * @throws Exception 
 	 */
-	public static boolean processIsRunning(ServerConfig config, String processString) throws Exception {
+	public static boolean processIsRunning(ServerConfig config, String processString) {
 		RemoteProcessListing listing = new RemoteProcessListing(config);
 
 		return listing.hasProcessByName(".*" + processString + ".*");
@@ -62,15 +60,13 @@ public class ProcessInfoUtils {
 	 * @param minimumWaitInSeconds
 	 *            The minimum amount of time to wait (in seconds).
 	 * @return
-	 * @throws Exception 
 	 */
-	public static boolean waitForProcessToStart(ServerConfig config, String processString, int intervalInSeconds, int timeoutInSeconds, int minimumWaitInSeconds)
-			throws Exception {
+	public static boolean waitForProcessToStart(ServerConfig config, String processString, int intervalInSeconds, int timeoutInSeconds, int minimumWaitInSeconds) {
 
 		boolean running = processIsRunning(config, processString);
 
 		if (running) {
-			Thread.sleep(1000L * minimumWaitInSeconds);
+			sleep(minimumWaitInSeconds);
 			return running;
 		}
 
@@ -78,7 +74,7 @@ public class ProcessInfoUtils {
 
 		for (int i = 0; i < cycles && !running; i++) {
 			LOG.info(processString + " is still not running (waiting for it to start)");
-			Thread.sleep(1000L * intervalInSeconds);
+			sleep(intervalInSeconds);
 			running = processIsRunning(config, processString);
 		}
 
@@ -99,14 +95,13 @@ public class ProcessInfoUtils {
 	 * @param timeoutInSeconds
 	 * @param minimumWaitInSeconds
 	 * @return
-	 * @throws Exception 
 	 */
-	public static boolean waitForProcessToStop(ServerConfig config, String processString, int intervalInSeconds, int timeoutInSeconds, int minimumWaitInSeconds) throws Exception {
+	public static boolean waitForProcessToStop(ServerConfig config, String processString, int intervalInSeconds, int timeoutInSeconds, int minimumWaitInSeconds) {
 
 		boolean running = processIsRunning(config, processString);
 
 		if (!running) {
-			Thread.sleep(1000L * minimumWaitInSeconds);
+			sleep(minimumWaitInSeconds);
 			return true;
 		}
 
@@ -114,7 +109,7 @@ public class ProcessInfoUtils {
 
 		for (int i = 0; i < cycles && running; i++) {
 			LOG.info(processString + " is still running (waiting for it to stop)");
-			Thread.sleep(1000L * intervalInSeconds);
+			sleep(intervalInSeconds);
 			running = processIsRunning(config, processString);
 		}
 
@@ -123,6 +118,14 @@ public class ProcessInfoUtils {
 		}
 
 		return running;
+	}
+
+	private static void sleep(int seconds) {
+		try {
+			Thread.sleep(1000L * seconds);
+		} catch (InterruptedException e) {
+			// ignore
+		}
 	}
 
 }

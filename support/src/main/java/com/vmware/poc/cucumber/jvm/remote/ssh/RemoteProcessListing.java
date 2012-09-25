@@ -1,6 +1,5 @@
 package com.vmware.poc.cucumber.jvm.remote.ssh;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +18,7 @@ public class RemoteProcessListing extends AbstractRemoteProcessRunner {
 
 	/** Constructor that sets the test config and then executes. 
 	 * @throws Exception */
-	public RemoteProcessListing(ServerConfig serverConfig) throws Exception {
+	public RemoteProcessListing(ServerConfig serverConfig) {
 		super(serverConfig);
 		run();
 	}

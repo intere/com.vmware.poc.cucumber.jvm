@@ -6,8 +6,10 @@ import com.vmware.poc.cucumber.jvm.models.ServerConfig;
 
 import org.apache.log4j.Logger;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
+@Ignore("This unit test needs to be made to work locally without the need for a remote server.")
 public class CatRemoteFileTest {
 	
 	private static final Logger LOG = Logger.getLogger(CatRemoteFileTest.class);

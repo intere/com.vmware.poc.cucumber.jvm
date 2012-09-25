@@ -1,19 +1,8 @@
 package com.vmware.poc.cucumber.jvm.remote.ssh;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.Closeable;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.security.KeyPair;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.log4j.Logger;
 
 import com.vmware.poc.cucumber.jvm.models.ServerConfig;
 
@@ -23,8 +12,6 @@ import com.vmware.poc.cucumber.jvm.models.ServerConfig;
  * 
  */
 public abstract class AbstractRemoteProcessRunner {
-
-	private static final Logger LOG = Logger.getLogger(AbstractRemoteProcessRunner.class);
 	private static final String SSH = "ssh";
 	protected ServerConfig serverConfig;
 	protected SshRunner runner;
@@ -34,10 +21,13 @@ public abstract class AbstractRemoteProcessRunner {
 		this.serverConfig = serverConfig;
 	}
 
-	public void run() throws Exception {
-
+	public void run() {
 		runner = new SshRunner(serverConfig, getCommand());
-		runner.run();
+		try {
+			runner.run();
+		} catch (IOException e) {
+			throw new RuntimeException("Exception running ssh command:", e);
+		}
 	}
 
 	public List<String> buildSshCommand() {
@@ -76,7 +66,4 @@ public abstract class AbstractRemoteProcessRunner {
 	public String getProcessOutput() {
 		return runner.getStdOut().toString();
 	}
-
-	
-
 }

@@ -11,8 +11,10 @@ import net.schmizz.sshj.connection.channel.direct.Session.Command;
 import net.schmizz.sshj.connection.channel.direct.Session;
 
 import org.apache.log4j.Logger;
+import org.junit.Ignore;
 import org.junit.Test;
 
+@Ignore("This unit test needs to be made to work locally without the need for a remote server.")
 public class SshJBlackboxTest {
 
 	private static final Logger LOG = Logger.getLogger(SshJBlackboxTest.class);
