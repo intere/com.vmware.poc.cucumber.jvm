@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<artifactId>features</artifactId>
 	<packaging>jar</packaging>
 
@@ -75,4 +75,72 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<testResources>
+			<testResource>
+				<directory>src/spec/resources</directory>
+			</testResource>
+		</testResources>
+		<resources>
+			<resource>
+				<targetPath>features</targetPath>
+				<filtering>false</filtering>
+				<directory>${basedir}/src/spec/resources/features</directory>
+				<includes>
+					<include>**/*.feature</include>
+				</includes>
+			</resource>
+			<!-- <resource> <targetPath></targetPath> <filtering>false</filtering> 
+				<directory>${basedir}/src/spec/resources</directory> <includes> <include>**/cucumber.xml</include> 
+				<include>**/applicationContext-servers.xml</include> </includes> </resource> -->
+		</resources>
+
+
+		<plugins>
+			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>test-jar</id>
+						<phase>package</phase>
+						<goals>
+							<goal>test-jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<!-- This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-checkstyle-plugin</artifactId>
+										<versionRange>[2.9.1,)</versionRange>
+										<goals>
+											<goal>checkstyle</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 </project>
