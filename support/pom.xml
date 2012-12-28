@@ -34,8 +34,6 @@
 			</exclusions>
 		</dependency>
 
-
-
 		<!-- Alternative SSH Implementation (sshj): -->
 		<dependency>
 			<groupId>net.schmizz</groupId>
