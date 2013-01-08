@@ -1,0 +1,16 @@
+<aspectj>
+
+	<aspects>
+		<!-- declare two existing aspects to the weaver -->
+		<aspect name="com.vmware.poc.cucumber.jvm.aspect.CucumberAspect" />
+	</aspects>
+
+	<!-- <weaver options="-XnoInline -Xreweavable -verbose -debug -showWeaveInfo"> -->
+	<weaver options="-showWeaveInfo -verbose">
+<!-- 		<include within="cucumber.*" />
+		<include within="gherkin.*" />
+ -->		<include within="cucumber.runtime.model.*" />
+ 			<include within="com.vmware.poc.cucumber.jvm.aspect.*" />
+	</weaver>
+
+</aspectj>

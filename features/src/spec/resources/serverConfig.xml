@@ -17,6 +17,6 @@
 			</util:map>
 		</property>
 		<!-- Specify this if you're connecting as a different user -->
-		<!-- <property name="user" /> -->
+		<!-- <property name="username" /> -->
 	</bean>
 </beans>
