@@ -11,11 +11,6 @@
 	<context:annotation-config />
 
 	<context:component-scan base-package="com.vmware.poc.cucumber.jvm" />
-	<context:component-scan base-package="com.vmware.poc.cucumber.jvm.aspect" />
-
-	<aop:aspectj-autoproxy>
-		<aop:include name="com.vmware.poc.cucumber.aspect.*" />
-	</aop:aspectj-autoproxy>
 
 	<beans:import resource="serverConfig.xml" />
 

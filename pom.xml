@@ -19,6 +19,7 @@
 		<module>support</module>
 		<module>steps</module>
 		<module>features</module>
+		<module>dist</module>
 	</modules>
 
 	<build>
