@@ -16,9 +16,7 @@
                         <useAllReactorProjects>true</useAllReactorProjects>
  
                         <includes>
-                                <include>com.vmware.poc-cucumber-jvm:support</include>
-                                <include>com.vmware.poc-cucumber-jvm:steps</include>
-                                <include>com.vmware.poc-cucumber-jvm:features</include>
+                                <include>com.vmware.poc-cucumber-jvm:weave</include>
                                 <include>com.vmware.poc-cucumber-jvm:features:tests</include>
                         </includes>
  
